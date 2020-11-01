@@ -1,0 +1,71 @@
+{% extends 'master.html' %}
+{% load static %}
+{% load thumbnail %}
+{% load globalfunctions %}
+
+
+{% block content %}
+<!--Corporate Page Banner Section-->
+<div class="co-cta-section-1 section bg-gradient " >
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="co-page-banner text-center col-xs-12">
+                <h1 style="margin-top: 50px">{{ thisProject.name|upper }} PROJESİ HAKKINDA</h1>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!--Corporate Portfolio Section 1-->
+<div class="co-portfolio-section-1 section pt-50 pb-50">
+    <div class="container">
+        <div class="row">
+
+            <div class="co-portfolio-details col-xs-12">
+                {% if images %}
+                    <div class="co-portfolio-details-slider slider mb-50">
+                        {% for item in images %}
+                            <div  class="slide" ><img src="{{ item.image.url }}" alt=""></div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div class="co-portfolio-details-content">
+
+                    <h4 class="title">{{ thisProject.shortDescription|title }}</h4>
+                    <p>{{ thisProject.description }}</p>
+
+                </div>
+                <img style=" margin-top: 50px;float: left; margin-right: 50px ;width: 100px; height: auto" src="{{ thisProject.logo.url }}">
+                <ul class="co-portfolio-details-meta">
+
+                    <li><span>Başlangıç Terihi:</span>{{ thisProject.date | date:"SHORT_DATE_FORMAT" | default:"-" }}</li>
+                    <li><span>Tipi:</span>{{ thisProject.type }}</li>
+                    <li><span>Sektor:</span>{{ thisProject.sector }}</li>
+                    <li style="width: 300px"><span>Website:</span><a target="_blank" href="{{ thisProject.link }}">{{ thisProject.link }}</a></li>
+                </ul>
+                <div class="st-benift-area "  style="padding-top: 150px;margin-top: 50px">
+
+                    <div class="container" style="padding-top: 50px;width: 100%; padding-right: 15px;padding-left: 15px; margin-right: auto;margin-left: auto">
+
+                        <section class="customer-logos slider">
+                            {% for project in projects %}
+                                <div class="slide" style="padding-left: 15px; padding-right: 15px"><img src="{{ project.logo.url }}"></div>
+                            {% endfor %}
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

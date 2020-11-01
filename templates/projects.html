@@ -1,0 +1,123 @@
+{% extends 'master.html' %}
+{% load static %}
+{% load thumbnail %}
+{% load globalfunctions %}
+
+
+{% block content %}
+<!--Corporate Page Banner Section-->
+<div class="co-cta-section-1 section bg-gradient " >
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="co-page-banner text-center col-xs-12">
+                <h1 style="margin-top: 50px">Tüm Projeler</h1>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!--Corporate Portfolio Section 1-->
+<div class="co-portfolio-section-1 section pt-50 pb-50">
+    <div class="container">
+        <div class="row">
+
+            <div class="co-portfolio-details col-xs-12">
+
+
+
+                <div class="container">
+
+
+
+                    <div class="row">
+
+                        <div class="col-xs-12">
+
+                            <div id="works" class="res-food-menu-wrapper">
+
+                                <div class="res-food-menu-filter isotop-filter text-center">
+                                    <p style="float: left; font-size: 26px;font-family:'Times New Roman';"><i style="color: whitesmoke">REFERANSLAR</i></p>
+                                    <button class="active" data-filter="*">TÜMÜ</button>
+                                    {% for type in projectsTypesList %}
+                                        <button data-filter=".{{ type }}">{{ type|upper }}</button>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="isotop-grid">
+                                    {% for project in projects %}
+                                        <div class="isotop-item res-food-menu-item {% getAllTypes project.type %} drink col-md-6 col-xs-12">
+                                            <a href="{% url 'detail' project.id %}" target="_blank">
+                                                <div class="image float-left" >
+
+                                                    {% with images=project.Pictures.all %}
+                                                        {% if images.count > 0 %}
+                                                            {% for img in images %}
+                                                                {% if img.status %}
+                                                                    {% if img.cover %}
+                                                                        {% thumbnail img.image "200x100" as im %}
+                                                                            <img class="thumbnail"
+                                                                                 style="cursor: pointer;padding: 0; background-color: white; background: white;"
+                                                                                 src="{{ im.url }}"/>
+                                                                        {% endthumbnail %}
+                                                                    {% endif %}
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% else %}
+                                                            {% thumbnail project.logo "200x100" as im %}
+                                                                            <img class="thumbnail"
+                                                                                 style="cursor: pointer; padding: 0; background-color: white; background: white;"
+                                                                                 src="{{ im.url }}"/>
+                                                                        {% endthumbnail %}
+                                                        {% endif %}
+                                                    {% endwith %}
+
+
+
+                                                </div>
+                                                <div class="content fix" style="color: white;">
+                                                    <h5 style="color: white;">{{ project.name | title }}</h5>
+                                                    <p style="color: white;">Sektor: {{ project.sector }}</p>
+                                                    <h5 style="color: white;">{{ project.type|upper }}</h5>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="row">
+                                        <div class="col-xs-12 text-center mt-80"><button class="btn btn-hover-gradient"><div class="spinner-grow text-info"></div>  DAHA FAZLA</button></div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+                <div class="st-benift-area "  style="padding-top: 150px;margin-top: 50px">
+
+                    <div class="container" style="padding-top: 50px;width: 100%; padding-right: 15px;padding-left: 15px; margin-right: auto;margin-left: auto">
+
+                        <section class="customer-logos slider">
+                            {% for project in projects %}
+                                <div class="slide" style="padding-left: 15px; padding-right: 15px"><img src="{{ project.logo.url }}"></div>
+                            {% endfor %}
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}
