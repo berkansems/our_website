@@ -1,8 +1,8 @@
 {% extends 'master.html' %}
 {% load static %}
-{% load thumbnail %}
+{% load l10n %}
 {% load globalfunctions %}
-
+{% load thumbnail %}
 
 {% block content %}
 <!--Corporate Page Banner Section-->
@@ -87,9 +87,6 @@
                                         </div>
                                     {% endfor %}
                                 </div>
-                                <div class="row">
-                                        <div class="col-xs-12 text-center mt-80"><button class="btn btn-hover-gradient"><div class="spinner-grow text-info"></div>  DAHA FAZLA</button></div>
-                                </div>
 
 
                             </div>
@@ -100,10 +97,15 @@
 
                 </div>
             </div>
-                <div class="st-benift-area "  style="padding-top: 150px;margin-top: 50px">
+
+
+            </div>
+
+        </div>
+            <div class="st-benift-area "  style="">
 
                     <div class="container" style="padding-top: 50px;width: 100%; padding-right: 15px;padding-left: 15px; margin-right: auto;margin-left: auto">
-
+                        <h2 style="font-weight: bold;text-align: center; padding-bottom: 50px; margin-top: 50px">Müşterilerimiz</h2>
                         <section class="customer-logos slider">
                             {% for project in projects %}
                                 <div class="slide" style="padding-left: 15px; padding-right: 15px"><img src="{{ project.logo.url }}"></div>
@@ -112,12 +114,6 @@
                     </div>
                 </div>
 
-            </div>
-
-        </div>
-
     </div>
-</div>
-
 
 {% endblock %}

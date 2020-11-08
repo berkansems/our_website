@@ -1,10 +1,11 @@
 {% extends 'master.html' %}
 {% load static %}
-{% load thumbnail %}
+{% load l10n %}
 {% load globalfunctions %}
-
+{% load thumbnail %}
 
 {% block content %}
+
     <!-- Hero Section Start -->
     <div class="hero-section section">
 
@@ -168,7 +169,7 @@
                                     {% endfor %}
                                 </div>
                                 <div class="row">
-                                        <div class="col-xs-12 text-center mt-80"><button class="btn btn-hover-gradient"><div class="spinner-grow text-info"></div>  DAHA FAZLA</button></div>
+                                        <div class="col-xs-12 text-center mt-80"><a href="{% url 'references' %}"><button class="btn btn-hover-gradient"><div class="spinner-grow text-info"></div>  DAHA FAZLA</button></a></div>
                                 </div>
 
 
@@ -203,4 +204,6 @@
         <!-- End Testimonial Style -->
     </main>
     <!--// Page Conttent -->
+<!-- Footer -->
+
 {% endblock %}
